@@ -1,9 +1,21 @@
 variable "aws_region" {
   type        = string
-  description = "(optional) describe your variable"
+  description = "Provide the region"
   default     = "us-west-2"
 }
 
+variable "name-of-the-project" {
+  type        = string
+  description = "type the name, it'll be used to set another resources names, like s3 and dynamodb names"
+  default     = "terraform-basic"
+}
+
+
+
 locals {
   force_destroy = false
+  resources_string_format_name = "${var.name-of-the-project}.%s.backend.terraform"
+
+  dynamodb-name = format(local.resources_string_format_name, "state-trace-lock")
+  s3-name = format(local.resources_string_format_name, "state-keeper")
 }
