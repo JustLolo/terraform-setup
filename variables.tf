@@ -13,9 +13,9 @@ variable "name-of-the-project" {
 
 
 locals {
-  force_destroy = false
+  force_destroy                = false
   resources_string_format_name = "${var.name-of-the-project}.%s.backend.terraform"
-
-  dynamodb-name = format(local.resources_string_format_name, "state-trace-lock")
-  s3-name = format(local.resources_string_format_name, "state-keeper")
+  dynamodb-name                = format(local.resources_string_format_name, "state-trace-lock")
+  s3-name                      = format(local.resources_string_format_name, "state-keeper")
+  s3-ec2-keys-folder-name      = "ec2-keys.backend.terraform"
 }
