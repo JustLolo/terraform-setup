@@ -16,6 +16,9 @@ locals {
   force_destroy                = false
   resources_string_format_name = "${var.name-of-the-project}.%s.backend.terraform"
   dynamodb-name                = format(local.resources_string_format_name, "state-trace-lock")
-  s3-name                      = format(local.resources_string_format_name, "state-keeper")
-  s3-ec2-keys-folder-name      = "ec2-keys.backend.terraform"
+
+  # s3 related
+  s3-name                   = format(local.resources_string_format_name, "state-keeper")
+  ec2-keys-folder-name      = "ec2-keys.backend.terraform"
+  status-keeper-folder-name = "status-keeper.backend.terraform"
 }

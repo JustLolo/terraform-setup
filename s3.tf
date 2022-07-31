@@ -47,14 +47,17 @@ resource "aws_s3_bucket_public_access_block" "terraform_state" {
 resource "aws_s3_object" "ec2_keys_folder" {
   bucket       = aws_s3_bucket.terraform_state.id
   acl          = "private"
-  key          = "${local.s3-ec2-keys-folder-name}/"
+  key          = "${local.ec2-keys-folder-name}/"
   content_type = "application/x-directory"
-
-  # tags = {
-  #   "Name"        = local.s3-ec2-keys-folder-name
-  #   "CreatedBy"   = "terraform"
-  #   "Purpose"     = "terraform backend generator"
-  #   "Purpose"     = "terraform backend generator/ec2 key directory"
-  #   "ProjectName" = var.name-of-the-project
-  # }
 }
+
+######################################################
+###  Creating a folder to track terraform status  ####
+######################################################
+resource "aws_s3_object" "terraform-backend-folder" {
+  bucket       = aws_s3_bucket.terraform_state.id
+  acl          = "private"
+  key          = "${local.status-keeper-folder-name}/"
+  content_type = "application/x-directory"
+}
+

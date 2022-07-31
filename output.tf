@@ -1,18 +1,23 @@
-output "force_destroy" {
-  value = local.force_destroy
+#  s3 bucket name
+output "s3-backend-id" {
+  description = "s3 folder for tracking state purposes"
+  value       = aws_s3_bucket.terraform_state.id
 }
 
+#  dynamodb table for tracking/locking state purposes
+output "dynamodb-backend-id" {
+  description = "dynamodb table used for tracking/locking state purposes"
+  value       = aws_dynamodb_table.terraform_state.id
+}
 
-# data "aws_caller_identity" "current" {}
+#  folder name of ec2 keys
+output "s3-folder-ec2-keys" {
+  description = "folder name of ec2 keys"
+  value       = aws_s3_object.ec2_keys_folder.key
+}
 
-# output "account_id" {
-#   value = data.aws_caller_identity.current.account_id
-# }
-
-# output "caller_arn" {
-#   value = data.aws_caller_identity.current.arn
-# }
-
-# output "caller_user" {
-#   value = data.aws_caller_identity.current.user_id
-# }
+#  s3 folder for tracking state purposes
+output "s3-folder-status-keeper" {
+  description = "folder name of ec2 keys"
+  value       = aws_s3_object.terraform-backend-folder.key
+}
