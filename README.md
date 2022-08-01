@@ -1,6 +1,6 @@
 <h1> Purpose </h1>
 <p>
-The purpose of this "project" is the fast deploy of the terraform backend on aws.
+The purpose of this "project" is the fast deployment of the terraform backend on aws.
 Check what a terraform backend is <a href="https://www.terraform.io/language/settings/backends/configuration"> here </a>
 </p>
 <p>
